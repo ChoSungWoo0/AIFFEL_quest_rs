@@ -3,8 +3,8 @@
 % if you need to pass options to natbib, use, e.g.:
 %     \PassOptionsToPackage{numbers, compress}{natbib}
 % before loading neurips_2024
-
-
+\PassOptionsToPackage{numbers, compress}{natbib}
+\usepackage{float}
 % ready for submission
 \usepackage[preprint]{neurips_2024}
 
@@ -33,7 +33,6 @@
 \usepackage{xcolor}         % colors
 \usepackage{graphicx}
 
-
 \title{What is the best Augmentation for Generalization?}
 
 
@@ -59,31 +58,33 @@
 
 
 \begin{abstract}
-    There comes a point in everyone's life when they wonder what the best augmentation technique is. Is there an obvious answer or there something I'm not aware of? This study was an abliation study using a total of five methods to address this question. The five methods are 1. No Augmentation 2. basic Augmentation 3. basic Augmentation + Mixup 4. basic Augmentation + CutMix 5. All Random, and the dataset is Stanford Dogs and the model is ResNet-50.
+    There comes a point in everyone's life when they wonder what the best augmentation technique is. Is there an obvious answer or there something I'm not aware of? This study conducts an ablation analysis using five augmentation methods to investigate their impact on model generalization. We applied five augmentation techniques—No Augmentation, Basic Augmentation, Basic Augmentation + Mixup, Basic Augmentation + CutMix, and All Random—on the Stanford Dogs dataset using a ResNet-50 model. The results show that explicit augmentation techniques such as random horizontal flipping and brightness adjustment achieved the highest test accuracy of 74.50\%. However, implicit augmentations like Mixup and CutMix did not improve performance, suggesting that preserving spatial information is crucial for fine-grained classification tasks. Furthermore, randomly applying augmentations was ineffective, highlighting the importance of selecting augmentation techniques that align with the dataset’s characteristics. While this study is limited to a specific dataset and model, it provides valuable insights into augmentation strategies and underscores the need for further research to optimize augmentation methods across different datasets.
 \end{abstract}
 
+\newpage
 
 \section{Introduction}
 
 
-Data Augmentation in Computer Vision improves generalization performance. Data augmentation artificially increases the diversity of the training dataset to help the model learn more diverse input patterns. This, in turn, improves the model's ability to generalize to data it hasn't seen. It's an effective way to prevent overfitting, especially in data-limited environments[1,2,3]. However, there is a lack of specific guidelines on which augmentations are best. This paper aims to provide the foundation for a paper that will reveal which augmentations are effective in different situations.     
+Data Augmentation in Computer Vision improves generalization performance. Data augmentation artificially increases the diversity of the training dataset to help the model learn more diverse input patterns. This, in turn, improves the model's ability to generalize to data it hasn't seen. It's an effective way to prevent overfitting, especially in data-limited environments\cite{krizhevsky2012, zhang2017, yun2019}. However, there is a lack of specific guidelines on which augmentations are best. This paper aims to provide the foundation for a paper that will reveal which augmentations are effective in different situations.     
 
-    \begin{figure}[h]
+    \begin{figure}[H]
       \centering
       \includegraphics[width=\linewidth]{Augmentation.jpg}
       \caption{Example of Explicit \& Implicit Augmentation}
+      \label{fig:augmentation}
     \end{figure}
     
 
 \subsection{Explicit Augmentation}
 
 
-Explicit augmentation is a technique for increasing the diversity of a dataset by explicitly transforming the data. This is often done by {\bf cropping, flipping, coloring}, etc. and is useful to improve the generalization performance of a model and prevent overfitting [1]. Explicit augmentation techniques, such as cropping, flipping, and coloring, are effective in improving a model’s generalization by artificially increasing the diversity of the dataset. However, these methods have inherent limitations. For instance, they are constrained by the transformations applied to the original data—meaning they cannot create fundamentally new variations beyond what the explicit rules allow. Consider an image classification task: if all images of a cat in the dataset are photographed from a similar angle, explicit augmentation methods like rotation or mirroring can only provide limited diversity. They cannot generate an image of the same cat from an entirely new viewpoint.
+Explicit augmentation is a technique for increasing the diversity of a dataset by explicitly transforming the data. This is often done by {\bf cropping, flipping, coloring}, etc. and is useful to improve the generalization performance of a model and prevent overfitting\cite{krizhevsky2012}. Explicit augmentation techniques, such as cropping, flipping, and coloring, are effective in improving a model’s generalization by artificially increasing the diversity of the dataset. However, these methods have inherent limitations. For instance, they are constrained by the transformations applied to the original data—meaning they cannot create fundamentally new variations beyond what the explicit rules allow. Consider an image classification task: if all images of a cat in the dataset are photographed from a similar angle, explicit augmentation methods like rotation or mirroring can only provide limited diversity. They cannot generate an image of the same cat from an entirely new viewpoint.
 
 
 \subsection{Implicit Augmentation}
 
-To overcome these constraints, implicit augmentation techniques have been developed. The key difference between Explicit Augmentation and Implicit Augmentation is {\bf Label-Preserving} and {\bf Label-Transforming}. Explicit augmentation preserves the labels of the original image so that the trained model can still classify the transformed image correctly. Implicit augmentation, however, adds transformations to the labels to create a new data distribution, which encourages the model to learn more general patterns. The two different variations can be seen in Figure 1.
+To overcome these constraints, implicit augmentation techniques have been developed. The key difference between Explicit Augmentation and Implicit Augmentation is {\bf Label-Preserving} and {\bf Label-Transforming}. Explicit augmentation preserves the labels of the original image so that the trained model can still classify the transformed image correctly. Implicit augmentation, however, adds transformations to the labels to create a new data distribution, which encourages the model to learn more general patterns. The two different variations can be seen in Figure ~\ref{fig:augmentation}.
 
 
 \section{Methods}
@@ -129,6 +130,7 @@ These findings demonstrate that while data augmentation is generally beneficial,
   \end{tabular}
 \end{table}
 
+\newpage
 
 \section{Conclusion}
 \label{others}
@@ -141,16 +143,28 @@ Furthermore, the findings highlight the importance of selecting augmentation str
 However, this study has a key limitation: it does not provide a definitive answer as to which augmentation method is the best in all scenarios. Instead, it emphasizes that the optimal augmentation technique depends on the dataset. If I could predict the most suitable augmentation strategy for a given dataset in advance, it would represent a significant breakthrough in the field of data augmentation. I hope that future research will explore this direction, developing methodologies to systematically determine the best augmentation strategies for different datasets.
 
 
-\section*{References}
 
 
-\medskip
+\begin{thebibliography}{9}
 
-[1] Krizhevsky, A., Sutskever, I., \& Hinton, G.E. (2012) ImageNet Classification with Deep Convolutional Neural Networks. In F. Pereira, C.J.C. Burges, L. Bottou, \& K.Q. Weinberger (eds.), {\it Advances in Neural Information Processing Systems 25}. Curran Associates, Inc.
+\bibitem{krizhevsky2012} 
+Krizhevsky, A., Sutskever, I., \& Hinton, G.E. (2012) 
+ImageNet Classification with Deep Convolutional Neural Networks. 
+In F. Pereira, C.J.C. Burges, L. Bottou, \& K.Q. Weinberger (eds.), 
+{\it Advances in Neural Information Processing Systems 25}. 
+Curran Associates, Inc.
 
+\bibitem{zhang2017} 
+Zhang, H., Cissé, M., Dauphin, Y.N., \& Lopez-Paz, D. (2017) 
+mixup: Beyond Empirical Risk Minimization. 
+arXiv preprint arXiv:1710.09412.
 
-[2] Zhang, H., Cissé, M., Dauphin, Y.N., \& Lopez-Paz, D. (2017) mixup: Beyond Empirical Risk Minimization. arXiv preprint arXiv:1710.09412.
+\bibitem{yun2019} 
+Yun, S., Han, D., Oh, S.J., Chun, S., Choe, J., \& Yoo, Y. (2019) 
+CutMix: Regularization Strategy to Train Strong Classifiers With Localizable Features. 
+In {\it Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)}, 
+October 2019.
 
-[3] Yun, S., Han, D., Oh, S.J., Chun, S., Choe, J., \& Yoo, Y. (2019) CutMix: Regularization Strategy to Train Strong Classifiers With Localizable Features. In {\it Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)}, October 2019.
+\end{thebibliography}
 
 \end{document}
