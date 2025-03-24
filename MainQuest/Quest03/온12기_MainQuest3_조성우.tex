@@ -90,7 +90,11 @@ To overcome these constraints, implicit augmentation techniques have been develo
 \label{gen_inst}
 
 
-We used a total of five methods to compare which augmentations yield the best generalization performance. The first is No-Augmentation. We used the performance of the model without augmentation as a baseline to see if augmentation improves performance. The second is basic-Augmentation. This method utilizes only explicit augmentation and applies random horizontal flip and random brightness adjustment. The third method applied CutMix to basic-Augmentation, and the fourth method applied Mixup to basic-Augmentation. Finally, the fifth method randomizes all of the augmentations.
+We used a total of five methods to compare which augmentations yield the best generalization performance. The first is no-Augmentation. We used the performance of the model without augmentation as a baseline to see if augmentation improves performance. The second is basic-Augmentation. This method utilizes only explicit augmentation and applies random horizontal flip and random brightness adjustment. The third method applied CutMix to basic-Augmentation, and the fourth method applied Mixup to basic-Augmentation. Finally, the fifth method randomizes all of the augmentations.
+
+We used the Stanford Dogs dataset, which consists of 120 different dog breeds labeled accordingly. The dataset contains a total of 20,580 images, with 12,000 images used for training and 8,580 images for testing. To create a validation set, we split the training set into 80\% training data and 20\% validation data.
+
+For the model, we used ResNet-50, leveraging pre-trained weights from ImageNet. Each case's optimal model checkpoint was determined based on validation accuracy. In this approach, only the Classifier layers participated in the training process, while the pre-trained backbone network parameters remained frozen.
 
 
 \section{Result}
