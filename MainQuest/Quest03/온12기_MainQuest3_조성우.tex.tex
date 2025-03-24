@@ -90,11 +90,11 @@ To overcome these constraints, implicit augmentation techniques have been develo
 \label{gen_inst}
 
 
-We used a total of five methods to compare which augmentations yield the best generalization performance. The first is no-Augmentation. We used the performance of the model without augmentation as a baseline to see if augmentation improves performance. The second is basic-Augmentation. This method utilizes only explicit augmentation and applies random horizontal flip and random brightness adjustment. The third method applied CutMix to basic-Augmentation, and the fourth method applied Mixup to basic-Augmentation. Finally, the fifth method randomizes all of the augmentations.
+I used a total of {\bf five methods} to compare which augmentations yield the best generalization performance. The first is no-Augmentation. I used the performance of the model without augmentation as a baseline to see if augmentation improves performance. The second is basic-Augmentation. This method utilizes only explicit augmentation and applies random horizontal flip and random brightness adjustment. The third method applied CutMix to basic-Augmentation, and the fourth method applied Mixup to basic-Augmentation. Finally, the fifth method randomizes all of the augmentations.
 
-We used the Stanford Dogs dataset, which consists of 120 different dog breeds labeled accordingly. The dataset contains a total of 20,580 images, with 12,000 images used for training and 8,580 images for testing. To create a validation set, we split the training set into 80\% training data and 20\% validation data.
+I used the {\bf Stanford Dogs dataset}, which consists of 120 different dog breeds labeled accordingly. The dataset contains a total of 20,580 images, with 12,000 images used for training and 8,580 images for testing. To create a validation set, I split the training set into 80\% training data and 20\% validation data.
 
-For the model, we used ResNet-50, leveraging pre-trained weights from ImageNet. Each case's optimal model checkpoint was determined based on validation accuracy. In this approach, only the Classifier layers participated in the training process, while the pre-trained backbone network parameters remained frozen.
+For the model, I used {\bf ResNet-50}, leveraging pre-trained weights from ImageNet. Each case's optimal model checkpoint was determined based on validation accuracy. In this approach, only the Classifier layers participated in the training process, while the pre-trained backbone network parameters remained frozen.
 
 
 \section{Result}
@@ -138,7 +138,7 @@ This study investigated the effectiveness of different augmentation techniques i
 
 Furthermore, the findings highlight the importance of selecting augmentation strategies based on the {\bf dataset characteristics} rather than applying augmentations arbitrarily. While augmentation remains a powerful tool for improving generalization, not all techniques are universally beneficial across different tasks.
 
-However, this study has a key limitation: it does not provide a definitive answer as to which augmentation method is the best in all scenarios. Instead, it emphasizes that the optimal augmentation technique depends on the dataset. If we could predict the most suitable augmentation strategy for a given dataset in advance, it would represent a significant breakthrough in the field of data augmentation. We hope that future research will explore this direction, developing methodologies to systematically determine the best augmentation strategies for different datasets.
+However, this study has a key limitation: it does not provide a definitive answer as to which augmentation method is the best in all scenarios. Instead, it emphasizes that the optimal augmentation technique depends on the dataset. If I could predict the most suitable augmentation strategy for a given dataset in advance, it would represent a significant breakthrough in the field of data augmentation. I hope that future research will explore this direction, developing methodologies to systematically determine the best augmentation strategies for different datasets.
 
 
 \section*{References}
